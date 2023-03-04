@@ -7,7 +7,7 @@ type FontFaceSource = {
 const FONT_FACE_SOURCES: FontFaceSource[] = [
   {
     descripter: {
-      display: 'block',
+      display: 'swap',
       style: 'normal',
       weight: '700',
     },
@@ -16,7 +16,7 @@ const FONT_FACE_SOURCES: FontFaceSource[] = [
   },
   {
     descripter: {
-      display: 'block',
+      display: 'swap',
       style: 'normal',
       weight: '400',
     },
@@ -26,15 +26,7 @@ const FONT_FACE_SOURCES: FontFaceSource[] = [
 ];
 
 export async function loadFonts() {
-  const fontFaces = FONT_FACE_SOURCES.map(({ descripter, family, source }) => new FontFace(family, source, descripter));
-  const fonts: FontFace[] = [];
-
-  for (const fontFace of fontFaces) {
-    const font = await fontFace.load();
-    fonts.push(font);
-  }
-
-  for (const font of fontFaces) {
-    document.fonts.add(font);
+  for (const { descripter, family, source } of FONT_FACE_SOURCES) {
+    document.fonts.add(new FontFace(family, source, descripter));
   }
 }

@@ -88,8 +88,8 @@ export const Top: FC = () => {
           <Suspense fallback={<ProductHeroImageSkelton />}>
             <ProductHeroImageWrapperComponent />
           </Suspense>
-          <ProductListWrapperComponent featureIds={[1,2,3]} />
-          <LazyProductListWrapperComponent featureIds={[4,5,6]} />
+          <ProductListWrapperComponent featureIds={[1,2]} />
+          <LazyProductListWrapperComponent featureIds={[3,4,5,6]} />
           <LazyProductListWrapperComponent featureIds={[7,8,9,10]} />
         </div>
       </Layout>

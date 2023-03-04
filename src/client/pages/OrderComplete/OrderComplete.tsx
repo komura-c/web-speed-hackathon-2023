@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
-import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,17 +17,11 @@ import * as styles from './OrderComplete.styles';
 
 export const OrderComplete: FC = () => {
   const navigate = useNavigate();
-  const [isReadyFont, setIsReadyFont] = useState(false);
   const { authUserLoading, isAuthUser } = useAuthUser();
   const { recommendation } = useRecommendation();
+  loadFonts()
 
-  useEffect(() => {
-    loadFonts().then(() => {
-      setIsReadyFont(true);
-    });
-  }, []);
-
-  if (!recommendation || !isReadyFont || authUserLoading) {
+  if (!recommendation || authUserLoading) {
     return null;
   }
   if (!isAuthUser) {
