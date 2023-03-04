@@ -13,22 +13,8 @@ import * as styles from './ProductHeroImage.styles';
 
 async function loadImageAsDataURL(url: string): Promise<string> {
   const blob = await fetch(url).then((res) => res.blob());
-  return await loadImage(blob)
+  return URL.createObjectURL(blob);
 }
-
-async function loadImage(blob: Blob): Promise<string> {
-  return new Promise((res, rej) => {
-    const fr =  new FileReader()
-    fr.onload = (event) => {
-      res(event.target?.result as string);
-    };
-    fr.onerror = (e) => {
-      console.log(e);
-      rej(e);
-    };
-    fr.readAsDataURL(blob)
-  }
-)}
 
 type Props = {
   product: ProductFragmentResponse;
