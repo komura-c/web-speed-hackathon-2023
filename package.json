@@ -17,7 +17,7 @@
     "clear:database": "rm -f ./databases/database.sqlite",
     "analyze": "cross-env NODE_ENV=production vite build --mode analyze",
     "launch": "flyctl launch --local-only",
-    "deploy": "flyctl deploy --local-only"
+    "app:deploy": "flyctl deploy --local-only"
   },
   "dependencies": {
     "@apollo/client": "3.8.0-alpha.7",
