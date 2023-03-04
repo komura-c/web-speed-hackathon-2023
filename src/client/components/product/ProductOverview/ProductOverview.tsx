@@ -1,3 +1,4 @@
+import { Temporal } from '@js-temporal/polyfill';
 import * as currencyFormatter from 'currency-formatter';
 import _ from 'lodash';
 import type { FC } from 'react';
@@ -23,7 +24,7 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       return;
     }
 
-    const endTime = window.Temporal.Instant.from(activeOffer.endDate).toLocaleString('ja-jp', {
+    const endTime = Temporal.Instant.from(activeOffer.endDate).toLocaleString('ja-jp', {
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',

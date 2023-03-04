@@ -32,11 +32,8 @@ export default defineConfig(async ({mode}) => {
         output: {
           manualChunks: prod ? {
             "@emotion/css": ["@emotion/css"],
-            "@js-temporal/polyfill": ["@js-temporal/polyfill"],
             "classnames": ["classnames"],
-            "core-js": ["core-js"],
             "currency-formatter": ["currency-formatter"],
-            "date-time-format-timezone": ["date-time-format-timezone"],
             "formik": ["formik"],
             lodash: ['lodash'],
             react: ['react'],
@@ -45,8 +42,6 @@ export default defineConfig(async ({mode}) => {
             "react-helmet": ["react-helmet"],
             "react-icons": ["react-icons"],
             "react-router-dom": ["react-router-dom"],
-            "setimmediate": ["setimmediate"],
-            "throttle-debounce": ["throttle-debounce"],
             "zipcode-ja": ["zipcode-ja"],
             "zod": ["zod"],
           } : {}

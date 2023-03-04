@@ -27,14 +27,14 @@ export class GetDeviceType extends Component<Props> {
 
   componentWillUnmount(): void {
     if (this._timer != null) {
-      window.clearImmediate(this._timer);
+      window.clearInterval(this._timer);
     }
   }
 
   private _checkIsDesktop() {
     this._windowWidth = window.innerWidth;
     this.forceUpdate(() => {
-      this._timer = window.setImmediate(this._checkIsDesktop.bind(this));
+      this._timer = window.setInterval(()=> this._checkIsDesktop(), 100);
     });
   }
 

@@ -28,11 +28,9 @@ specifiers:
   '@vitejs/plugin-react': 3.1.0
   bcrypt: 5.1.0
   classnames: 2.3.2
-  core-js: 3.29.0
   cross-env: 7.0.3
   csstype: 3.1.1
   currency-formatter: 1.5.9
-  date-time-format-timezone: 1.0.22
   eslint: 8.29.0
   eslint-config-prettier: 8.5.0
   eslint-import-resolver-typescript: 3.5.3
@@ -70,13 +68,11 @@ specifiers:
   recoil: 0.7.6
   reflect-metadata: 0.1.13
   rollup-plugin-visualizer: 5.9.0
-  setimmediate: 1.0.5
   sqlite3: 5.1.4
   styled-components: 5.3.6
   stylelint: 15.1.0
   stylelint-config-recommended: 10.0.1
   stylelint-order: 6.0.2
-  throttle-debounce: 5.0.0
   ts-node: 10.9.1
   typeorm: 0.3.11
   typescript: 4.9.3
@@ -97,9 +93,7 @@ dependencies:
   '@types/koa-session': 5.10.6
   bcrypt: 5.1.0
   classnames: 2.3.2
-  core-js: 3.29.0
   currency-formatter: 1.5.9
-  date-time-format-timezone: 1.0.22
   formik: 2.2.9_react@18.2.0
   graphql: 16.6.0
   http-graceful-shutdown: 3.1.13
@@ -122,10 +116,8 @@ dependencies:
   react-router-dom: 6.4.5_biqbaboplfbrettd7655fr4n2y
   recoil: 0.7.6_biqbaboplfbrettd7655fr4n2y
   reflect-metadata: 0.1.13
-  setimmediate: 1.0.5
   sqlite3: 5.1.4
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
-  throttle-debounce: 5.0.0
   typeorm: 0.3.11_h3l5zcb3i6sggvllyfknv6gs44
   zipcode-ja: 0.0.7
   zod: 3.20.6
@@ -2518,11 +2510,6 @@ packages:
     resolution: {integrity: sha512-3DdaFaU/Zf1AnpLiFDeNCD4TOWe3Zl2RZaTzUvWiIk5ERzcCodOE20Vqq4fzCbNoHURFHT4/us/Lfq+S2zyY4w==}
     dev: false
 
-  /core-js/3.29.0:
-    resolution: {integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==}
-    requiresBuild: true
-    dev: false
-
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: false
@@ -2639,10 +2626,6 @@ packages:
   /date-fns/2.29.3:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
     engines: {node: '>=0.11'}
-    dev: false
-
-  /date-time-format-timezone/1.0.22:
-    resolution: {integrity: sha512-4hEeKPpNlbFO05ldht9FwJEy2g1xL7kU3dTPY5hNSd1AyMjrrIeUS54kSWgt/KdttYshhjDMIonU+vCmL4NjVw==}
     dev: false
 
   /debug/2.6.9:
@@ -5795,10 +5778,6 @@ packages:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
     dev: false
 
-  /setimmediate/1.0.5:
-    resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
-    dev: false
-
   /setprototypeof/1.1.0:
     resolution: {integrity: sha512-BvE/TwpZX4FXExxOxZyRGQQv651MSwmWKZGqvmPcRIjDqWub67kTKuIMx43cZZrS/cBBzwBcNDWoFxt2XEFIpQ==}
     dev: false
@@ -6259,11 +6238,6 @@ packages:
     resolution: {integrity: sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==}
     dependencies:
       any-promise: 1.3.0
-    dev: false
-
-  /throttle-debounce/5.0.0:
-    resolution: {integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==}
-    engines: {node: '>=12.22'}
     dev: false
 
   /tiny-glob/0.2.9:

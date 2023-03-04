@@ -1,3 +1,4 @@
+import { Temporal } from '@js-temporal/polyfill';
 import type { FC } from 'react';
 
 import type { ReviewFragmentResponse } from '../../../graphql/fragments';
@@ -18,7 +19,7 @@ export const ReviewList: FC<Props> = ({ reviews }) => {
   return (
     <ul className={styles.itemList()}>
       {reviews.map((review) => {
-        const endTime = window.Temporal.Instant.from(review.postedAt).toLocaleString('ja-jp', {
+        const endTime = Temporal.Instant.from(review.postedAt).toLocaleString('ja-jp', {
           day: '2-digit',
           hour: '2-digit',
           minute: '2-digit',

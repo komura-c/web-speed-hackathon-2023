@@ -1,6 +1,5 @@
 import type { FC, ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { throttle } from 'throttle-debounce';
 
 import * as styles from './WidthRestriction.styles';
 
@@ -15,21 +14,14 @@ export const WidthRestriction: FC<Props> = ({ children }) => {
   const isReady = clientWidth !== 0;
 
   useEffect(() => {
-    const updateClientWidth = throttle(1000, () => {
+    const timer = setInterval(() => {
       const width = containerRef.current?.getBoundingClientRect().width ?? 0;
       // 横幅を最大 1024px にする
       setClientWidth(Math.min(width, 1024));
-    });
-
-    let timer = (function tick() {
-      return setImmediate(() => {
-        updateClientWidth();
-        timer = tick();
-      });
-    })();
+    }, 1000);
 
     return () => {
-      clearImmediate(timer);
+      clearInterval(timer);
     };
   }, []);
 
