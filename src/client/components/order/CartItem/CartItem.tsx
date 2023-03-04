@@ -7,7 +7,7 @@ import { useActiveOffer } from '../../../hooks/useActiveOffer';
 import { normalizeCartItemCount } from '../../../utils/normalize_cart_item';
 import { Anchor } from '../../foundation/Anchor';
 import { AspectRatio } from '../../foundation/AspectRatio';
-import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType';
+import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType/GetDeviceType';
 import { Image } from '../../foundation/Image';
 import { OutlineButton } from '../../foundation/OutlineButton';
 import { ProductOfferLabel } from '../../product/ProductOfferLabel';

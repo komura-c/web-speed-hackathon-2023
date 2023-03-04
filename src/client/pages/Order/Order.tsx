@@ -1,11 +1,10 @@
 import type { FC } from 'react';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
 import { Layout } from '../../components/application/Layout';
 import { WidthRestriction } from '../../components/foundation/WidthRestriction';
-import { OrderForm } from '../../components/order/OrderForm';
 import { OrderPreview } from '../../components/order/OrderPreview';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { useOrder } from '../../hooks/useOrder';
@@ -13,6 +12,8 @@ import { useSubmitOrder } from '../../hooks/useSubmitOrder';
 import { useUpdateCartItem } from '../../hooks/useUpdateCartItems';
 
 import * as styles from './Order.styles';
+
+const OrderForm = lazy(() => import('../../components/order/OrderForm'));
 
 export const Order: FC = () => {
   const navigate = useNavigate();

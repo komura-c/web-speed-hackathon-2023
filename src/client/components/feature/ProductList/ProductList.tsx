@@ -1,9 +1,9 @@
-import _ from 'lodash';
+import { isEqual } from 'lodash-es';
 import type { FC } from 'react';
 import { memo } from 'react';
 
 import type { FeatureSectionFragmentResponse } from '../../../graphql/fragments';
-import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType';
+import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType/GetDeviceType';
 import { ProductGridList } from '../ProductGridList';
 import { ProductListSlider } from '../ProductListSlider';
 
@@ -26,6 +26,6 @@ export const ProductList: FC<Props> = memo(({ featureSection }) => {
       }}
     </GetDeviceType>
   );
-}, _.isEqual);
+}, isEqual);
 
 ProductList.displayName = 'ProductList';

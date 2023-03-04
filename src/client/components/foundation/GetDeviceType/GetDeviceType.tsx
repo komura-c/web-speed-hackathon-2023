@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
+import type { FC , ReactNode } from 'react';
 
 export const DeviceType = {
   DESKTOP: 'DESKTOP',
@@ -11,37 +11,24 @@ type Props = {
   children: ({ deviceType }: { deviceType: DeviceType }) => ReactNode;
 };
 
-export class GetDeviceType extends Component<Props> {
-  private _timer: number | null;
-  private _windowWidth: number;
+export const GetDeviceType: FC<Props> = ({children}: Props) => {
+  const [windowWidth, setWindowWidth] = useState(0);
 
-  constructor(props: Props) {
-    super(props);
-    this._windowWidth = window.innerWidth;
-    this._timer = null;
-  }
+  useEffect(() => {
+    const updateWindow = () => {
+      const newWidth = window.innerWidth;
+      setWindowWidth(newWidth);
+    };
+    window.addEventListener("resize", updateWindow);
 
-  componentDidMount(): void {
-    this._checkIsDesktop();
-  }
+    return () => window.removeEventListener("resize", updateWindow) 
+  }, []);
 
-  componentWillUnmount(): void {
-    if (this._timer != null) {
-      window.clearInterval(this._timer);
-    }
-  }
-
-  private _checkIsDesktop() {
-    this._windowWidth = window.innerWidth;
-    this.forceUpdate(() => {
-      this._timer = window.setInterval(()=> this._checkIsDesktop(), 100);
-    });
-  }
-
-  render() {
-    const { children: render } = this.props;
-    return render({
-      deviceType: this._windowWidth >= 1024 ? DeviceType.DESKTOP : DeviceType.MOBILE,
-    });
-  }
+  return (
+    <>
+      {children({
+        deviceType: windowWidth >= 1024 ? DeviceType.DESKTOP : DeviceType.MOBILE,
+      })}
+    </>
+  )
 }

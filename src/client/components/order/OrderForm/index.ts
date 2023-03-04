@@ -1,1 +1,1 @@
-export * from './OrderForm';
+export { OrderForm as default } from "./OrderForm";

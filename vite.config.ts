@@ -24,7 +24,6 @@ export default defineConfig(async ({mode}) => {
 
   return {
     build: {
-      assetsInlineLimit: 20480,
       cssCodeSplit: prod,
       cssTarget: 'es6',
       minify: prod,
@@ -35,7 +34,6 @@ export default defineConfig(async ({mode}) => {
             "classnames": ["classnames"],
             "currency-formatter": ["currency-formatter"],
             "formik": ["formik"],
-            lodash: ['lodash'],
             react: ['react'],
             "react-dom": ["react-dom"],
             "react-error-boundary": ["react-error-boundary"],

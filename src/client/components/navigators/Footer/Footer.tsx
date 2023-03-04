@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType';
+import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType/GetDeviceType';
 import { Image } from '../../foundation/Image';
 
 import * as styles from './Footer.styles';

@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import type { MediaFileFragmentResponse } from '../../../../graphql/fragments';
 import { getMediaType } from '../../../../utils/get_media_type';
-import { DeviceType, GetDeviceType } from '../../../foundation/GetDeviceType';
+import { DeviceType, GetDeviceType } from '../../../foundation/GetDeviceType/GetDeviceType';
 import { Image } from '../../../foundation/Image';
 
 import * as styles from './MediaItemPreiewer.styles';
