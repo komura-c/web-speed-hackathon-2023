@@ -1,6 +1,5 @@
 FROM node:18.13.0-bullseye AS build
 ENV TZ Asia/Tokyo
-ENV NODE_ENV development
 
 RUN apt-get update && apt-get install -y --no-install-recommends dumb-init sqlite3
 RUN npm install -g pnpm
@@ -18,7 +17,7 @@ RUN pnpm build
 
 FROM node:18.13.0-bullseye-slim
 ENV TZ Asia/Tokyo
-ENV NODE_ENV development
+ENV NODE_ENV production
 
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 COPY --from=build /usr/bin/sqlite3 /usr/bin/sqlite3
