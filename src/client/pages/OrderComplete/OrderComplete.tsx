@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Layout } from '../../components/application/Layout';
 import { AspectRatio } from '../../components/foundation/AspectRatio';
-import { DeviceType, GetDeviceType } from '../../components/foundation/GetDeviceType';
+import { DeviceType, GetDeviceType } from '../../components/foundation/GetDeviceType/GetDeviceType';
 import { PrimaryAnchor } from '../../components/foundation/PrimaryAnchor';
 import { WidthRestriction } from '../../components/foundation/WidthRestriction';
 import { ProductHeroImage } from '../../components/product/ProductHeroImage';
