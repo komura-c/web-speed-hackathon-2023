@@ -3,7 +3,7 @@
   "license": "MPL-2.0",
   "scripts": {
     "start": "npm-run-all -p start:client start:server",
-    "start:client": "cross-env NODE_ENV=development vite build --watch",
+    "start:client": "cross-env NODE_ENV=production vite build --mode development --watch",
     "start:server": "nodemon --watch src/server --ext 'ts,tsx' --exec 'ts-node src/server'",
     "build": "npm-run-all -s build:tsc build:vite",
     "build:tsc": "tsc",
@@ -15,7 +15,7 @@
     "seed": "npm-run-all -s clear:database seed:database",
     "seed:database": "cross-env SEED_BASE_UNIXTIME=1677855600 ts-node tools/seed.ts",
     "clear:database": "rm -f ./databases/database.sqlite",
-    "analyze": "cross-env NODE_ENV=development vite build --mode analyze",
+    "analyze": "cross-env NODE_ENV=production vite build --mode analyze",
     "launch": "flyctl launch --local-only",
     "deploy": "flyctl deploy --local-only"
   },

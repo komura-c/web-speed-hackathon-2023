@@ -30,7 +30,7 @@ export default defineConfig(async ({mode}) => {
       minify: prod,
       rollupOptions: {
         output: {
-          manualChunks: {
+          manualChunks: prod ? {
             "@emotion/css": ["@emotion/css"],
             "@js-temporal/polyfill": ["@js-temporal/polyfill"],
             "classnames": ["classnames"],
@@ -49,7 +49,7 @@ export default defineConfig(async ({mode}) => {
             "throttle-debounce": ["throttle-debounce"],
             "zipcode-ja": ["zipcode-ja"],
             "zod": ["zod"],
-          }
+          } : {}
         },
         plugins: [
           mode === 'analyze' &&
