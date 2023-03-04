@@ -1,5 +1,6 @@
 import type { Context } from '@apollo/client';
 import type { GraphQLFieldResolver } from 'graphql';
+import { In } from 'typeorm/find-options/operator/In';
 
 import { FeatureSection } from '../../model/feature_section';
 import { Product } from '../../model/product';
@@ -8,7 +9,7 @@ import { User } from '../../model/user';
 import { dataSource } from '../data_source';
 
 type QueryResolver = {
-  features: GraphQLFieldResolver<unknown, Context, never, Promise<FeatureSection[]>>;
+  features: GraphQLFieldResolver<unknown, Context, { ids: number[] }, Promise<FeatureSection[]>>;
   me: GraphQLFieldResolver<unknown, Context, never, Promise<User | null>>;
   product: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<Product>>;
   recommendations: GraphQLFieldResolver<unknown, Context, never, Promise<Recommendation[]>>;
@@ -16,8 +17,10 @@ type QueryResolver = {
 };
 
 export const queryResolver: QueryResolver = {
-  features: () => {
-    return dataSource.manager.find(FeatureSection);
+  features: (_, args) => {
+    return dataSource.manager.findBy(FeatureSection, {
+      id: In(args.ids)
+    });
   },
   me: async (_parent, _args, { session }) => {
     if (session['userId'] == null) {

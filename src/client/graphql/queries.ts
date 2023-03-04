@@ -70,8 +70,8 @@ export type GetRecommendationsQueryResponse = {
 export const GetFeatureSectionsQuery = gql`
   ${FeatureSectionFragment}
 
-  query GetFeatureSections {
-    features {
+  query GetFeatureSections($featureIds: [Int!]!) {
+    features(ids: $featureIds) {
       ...FeatureSectionFragment
     }
   }

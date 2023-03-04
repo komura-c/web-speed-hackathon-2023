@@ -1,5 +1,4 @@
 import { format } from 'currency-formatter';
-import { isEqual } from 'lodash-es';
 import type { FC } from 'react';
 import { memo } from 'react';
 
@@ -32,6 +31,6 @@ export const OrderPreview: FC<Props> = memo(({ onRemoveCartItem, onUpdateCartIte
       <p className={styles.totalPrice()}>{format(totalPrice, { code: 'JPY', precision: 0 })}</p>
     </div>
   );
-}, isEqual);
+},  (prevProps, nextProps) => prevProps.order.id === nextProps.order.id);
 
 OrderPreview.displayName = 'OrderPreview';

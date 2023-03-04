@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import { isEqual } from 'lodash-es';
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 import type { FC } from 'react';
 
 import type { ProductFragmentResponse } from '../../../graphql/fragments';
@@ -11,11 +10,6 @@ import { WidthRestriction } from '../../foundation/WidthRestriction';
 
 import * as styles from './ProductHeroImage.styles';
 
-async function loadImageAsDataURL(url: string): Promise<string> {
-  const blob = await fetch(url).then((res) => res.blob());
-  return URL.createObjectURL(blob);
-}
-
 type Props = {
   product: ProductFragmentResponse;
   title: string;
@@ -24,16 +18,7 @@ type Props = {
 export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
   const thumbnailFile = product.media.find((productMedia) => productMedia.isThumbnail)?.file;
 
-  const [imageDataUrl, setImageDataUrl] = useState<string>();
-
-  useEffect(() => {
-    if (thumbnailFile == null) {
-      return;
-    }
-    loadImageAsDataURL(thumbnailFile.filename).then((dataUrl) => setImageDataUrl(dataUrl));
-  }, [thumbnailFile]);
-
-  if (imageDataUrl === undefined) {
+  if (thumbnailFile?.filename === undefined) {
     return null;
   }
 
@@ -45,7 +30,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
             <Anchor href={`/product/${product.id}`}>
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
-                  <img className={styles.image()} src={imageDataUrl} />
+                  <img className={styles.image()} loading="eager" src={thumbnailFile.filename} />
                 </AspectRatio>
 
                 <div className={styles.overlay()}>
@@ -73,6 +58,6 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
       }}
     </GetDeviceType>
   );
-}, isEqual);
+}, (prevProps, nextProps) => prevProps.product.id === nextProps.product.id && prevProps.title === nextProps.title);
 
 ProductHeroImage.displayName = 'ProductHeroImage';

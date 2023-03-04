@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 
 import { ApolloServer } from '@apollo/server';
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from '@apollo/server/plugin/landingPage/default';
 
 import type { Context } from '../context';
 import { rootResolve } from '../utils/root_resolve';
@@ -39,8 +39,13 @@ export async function initializeApolloServer(): Promise<ApolloServer<Context>> {
     ].map((filepath) => fs.readFile(filepath, { encoding: 'utf-8' })),
   );
 
+  const prod = !!(process.env.NODE_ENV === 'production');
   const server = new ApolloServer({
-    plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
+    plugins: [
+      prod ? 
+        ApolloServerPluginLandingPageProductionDefault({ includeCookies: true }) :
+        ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })
+    ],
     resolvers: {
       FeatureItem: featureItemResolver,
       FeatureSection: featureSectionResolver,

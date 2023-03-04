@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
 
-import type { FeatureSectionFragmentResponse } from '../../../graphql/fragments';
+import type { FeatureItemFragmentResponse } from '../../../graphql/fragments';
 import { ProductCard } from '../ProductCard';
 import { ArrowType, ProductListSlideButton } from '../ProductListSlideButton';
 
@@ -9,11 +9,11 @@ import * as styles from './ProductListSlider.styles';
 import { useSlider } from './hooks/useSlider';
 
 type Props = {
-  featureSection: FeatureSectionFragmentResponse;
+  items: FeatureItemFragmentResponse[];
 };
 
-export const ProductListSlider: FC<Props> = ({ featureSection }) => {
-  const products = featureSection.items.map((item) => item.product);
+export const ProductListSlider: FC<Props> = ({ items }) => {
+  const products = items.map((item) => item.product);
 
   const { containerElementRef, setSlideIndex, slideIndex, visibleItemCount } = useSlider({
     items: products,

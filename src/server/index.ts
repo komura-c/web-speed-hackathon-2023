@@ -27,11 +27,6 @@ async function init(): Promise<void> {
   app.use(bodyParser());
   app.use(session({}, app));
 
-  app.use(async (ctx, next) => {
-    ctx.set('Cache-Control', 'no-store');
-    await next();
-  });
-
   const apolloServer = await initializeApolloServer();
   await apolloServer.start();
 
@@ -53,8 +48,17 @@ async function init(): Promise<void> {
     }),
   );
 
-  app.use(serve(rootResolve('dist')));
-  app.use(serve(rootResolve('public')));
+  app.use(serve(rootResolve('dist'), {
+    maxAge: 365 * 24 * 60 * 60
+  }));
+  app.use(serve(rootResolve('public'), {
+    maxAge: 365 * 24 * 60 * 60
+  }));
+
+  app.use(async (ctx, next) => {
+    ctx.set('Cache-Control', 'no-store');
+    await next();
+  });
 
   app.use(async (ctx) => await send(ctx, rootResolve('/dist/index.html')));
 

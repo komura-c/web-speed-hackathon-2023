@@ -3,8 +3,12 @@ import { useSuspenseQuery_experimental as useSuspenseQuery } from '@apollo/clien
 import type { GetFeatureSectionsQueryResponse } from '../graphql/queries';
 import { GetFeatureSectionsQuery } from '../graphql/queries';
 
-export const useFeatures = () => {
-  const featuresResult = useSuspenseQuery<GetFeatureSectionsQueryResponse>(GetFeatureSectionsQuery);
+export const useFeatures = (featureIds: number[]) => {
+  const featuresResult = useSuspenseQuery<GetFeatureSectionsQueryResponse>(GetFeatureSectionsQuery, {
+    variables: {
+      featureIds,
+    }
+  });
 
   const features = featuresResult.data?.features;
 

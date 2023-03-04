@@ -14,15 +14,9 @@ export const AspectRatio: FC<Props> = ({ children, ratioHeight, ratioWidth }) =>
   const [clientHeight, setClientHeight] = useState<number>(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const width = containerRef.current?.getBoundingClientRect().width ?? 0;
-      const height = (width * ratioHeight) / ratioWidth;
-      setClientHeight(height);
-    }, 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
+    const width = containerRef.current?.getBoundingClientRect().width ?? 0;
+    const height = (width * ratioHeight) / ratioWidth;
+    setClientHeight(height);
   }, [ratioHeight, ratioWidth]);
 
   return (

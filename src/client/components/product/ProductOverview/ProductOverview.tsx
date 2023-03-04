@@ -1,6 +1,5 @@
 import { Temporal } from '@js-temporal/polyfill';
 import { format } from 'currency-formatter';
-import { isEqual } from 'lodash-es';
 import type { FC } from 'react';
 import { memo } from 'react';
 
@@ -60,6 +59,6 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       </div>
     </div>
   );
-}, isEqual);
+}, (prevProps, nextProps) => prevProps.activeOffer?.id === nextProps.activeOffer?.id && prevProps.product?.id === nextProps.product?.id);
 
 ProductOverview.displayName = 'ProductOverview';

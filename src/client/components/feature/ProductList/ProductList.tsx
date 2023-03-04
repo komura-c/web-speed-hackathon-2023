@@ -1,4 +1,3 @@
-import { isEqual } from 'lodash-es';
 import type { FC } from 'react';
 import { memo } from 'react';
 
@@ -17,15 +16,15 @@ export const ProductList: FC<Props> = memo(({ featureSection }) => {
       {({ deviceType }) => {
         switch (deviceType) {
           case DeviceType.DESKTOP: {
-            return <ProductListSlider featureSection={featureSection} />;
+            return <ProductListSlider items={featureSection.items} />;
           }
           case DeviceType.MOBILE: {
-            return <ProductGridList featureSection={featureSection} />;
+            return <ProductGridList items={featureSection.items} />;
           }
         }
       }}
     </GetDeviceType>
   );
-}, isEqual);
+}, (prevProps, nextProps) => prevProps.featureSection.id === nextProps.featureSection.id);
 
 ProductList.displayName = 'ProductList';
