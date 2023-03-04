@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import * as currencyFormatter from 'currency-formatter';
+import { format } from 'currency-formatter';
 import type { ChangeEventHandler, FC } from 'react';
 
 import type { ShoppingCartItemFragmentResponse } from '../../../graphql/fragments';
@@ -63,7 +63,7 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
                   <div className={styles.details()}>
                     <p className={styles.itemName()}>{item.product.name}</p>
                     <p className={styles.itemPrice()}>
-                      {currencyFormatter.format(price, { code: 'JPY', precision: 0 })}
+                      {format(price, { code: 'JPY', precision: 0 })}
                     </p>
                   </div>
                 </div>

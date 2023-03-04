@@ -1,5 +1,3 @@
-import http from 'node:http';
-
 import { koaMiddleware } from '@as-integrations/koa';
 import gracefulShutdown from 'http-graceful-shutdown';
 import Koa from 'koa';
@@ -23,7 +21,6 @@ async function init(): Promise<void> {
   await dataSource.initialize();
 
   const app = new Koa();
-  const httpServer = http.createServer(app.callback());
 
   app.keys = ['cookie-key'];
   app.use(logger());
@@ -61,11 +58,11 @@ async function init(): Promise<void> {
 
   app.use(async (ctx) => await send(ctx, rootResolve('/dist/index.html')));
 
-  httpServer.listen({ port: PORT }, () => {
+  app.listen({ port: PORT }, () => {
     console.log(`🚀 Server ready at http://localhost:${PORT}`);
   });
 
-  gracefulShutdown(httpServer, {
+  gracefulShutdown(app, {
     async onShutdown(signal) {
       console.log(`Received signal to terminate: ${signal}`);
       await apolloServer.stop();

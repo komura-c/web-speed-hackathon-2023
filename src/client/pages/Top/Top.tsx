@@ -9,14 +9,34 @@ import { useRecommendation } from '../../hooks/useRecommendation';
 
 import * as styles from './Top.styles';
 
-export const Top: FC = () => {
+const ProductHeroImageWrapperComponent = () => {
   const { recommendation } = useRecommendation();
-  const { features } = useFeatures();
-
-  if (recommendation === undefined || features === undefined) {
+  if (recommendation === undefined) {
     return null;
   }
+  return <ProductHeroImage product={recommendation.product} title="今週のオススメ" />;
+}
 
+const ProductListWrapperComponent = () => {
+  const { features } = useFeatures();
+  if (features === undefined) {
+    return null;
+  }
+  return (
+    <div className={styles.featureList()}>
+      {features.map((featureSection) => {
+        return (
+          <div key={featureSection.id} className={styles.feature()}>
+            <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
+            <ProductList featureSection={featureSection} />
+          </div>
+        );
+      })}
+    </div>
+  )
+}
+
+export const Top: FC = () => {
   return (
     <>
       <Helmet>
@@ -24,18 +44,8 @@ export const Top: FC = () => {
       </Helmet>
       <Layout>
         <div>
-          <ProductHeroImage product={recommendation.product} title="今週のオススメ" />
-
-          <div className={styles.featureList()}>
-            {features.map((featureSection) => {
-              return (
-                <div key={featureSection.id} className={styles.feature()}>
-                  <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
-                  <ProductList featureSection={featureSection} />
-                </div>
-              );
-            })}
-          </div>
+          <ProductHeroImageWrapperComponent />
+          <ProductListWrapperComponent />
         </div>
       </Layout>
     </>

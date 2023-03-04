@@ -1,5 +1,5 @@
 import { Temporal } from '@js-temporal/polyfill';
-import * as currencyFormatter from 'currency-formatter';
+import { format } from 'currency-formatter';
 import { isEqual } from 'lodash-es';
 import type { FC } from 'react';
 import { memo } from 'react';
@@ -51,11 +51,11 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       <div className={styles.priceWrapper()}>
         {activeOffer !== undefined ? (
           <span className={styles.priceWithoutOffer()}>
-            {currencyFormatter.format(product.price, { code: 'JPY', precision: 0 })}
+            {format(product.price, { code: 'JPY', precision: 0 })}
           </span>
         ) : null}
         <span className={styles.price()}>
-          {currencyFormatter.format(activeOffer?.price ?? product.price, { code: 'JPY', precision: 0 })}
+          {format(activeOffer?.price ?? product.price, { code: 'JPY', precision: 0 })}
         </span>
       </div>
     </div>

@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title><%= title %></title>
-
-    <% for (var href of videos) { %>
-    <link rel="preload" as="video" fetchPriority="high" href="<%= href %>" />
-    <% } %>
-
-    <script type="module" src="<%= module %>"></script>
+    <title>買えるオーガニック</title>
+    <script type="module" src="/src/client/index.tsx"></script>
   </head>
 
   <body>
