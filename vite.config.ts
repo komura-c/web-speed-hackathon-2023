@@ -42,7 +42,6 @@ export default defineConfig(async ({mode}) => {
             "react-helmet": ["react-helmet"],
             "react-icons": ["react-icons"],
             "react-router-dom": ["react-router-dom"],
-            "zipcode-ja": ["zipcode-ja"],
             "zod": ["zod"],
           } : {}
         },
