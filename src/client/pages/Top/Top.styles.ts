@@ -1,6 +1,7 @@
 import { css } from '@emotion/css';
 
 export const featureList = () => css`
+  min-height: 280px;
   display: flex;
   flex-direction: column;
   gap: 24px;

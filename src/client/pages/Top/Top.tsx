@@ -1,11 +1,10 @@
 import type { FC} from 'react';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Layout } from '../../components/application/Layout';
 import { ProductList } from '../../components/feature/ProductList';
 import { ProductHeroImage } from '../../components/product/ProductHeroImage';
-import { ProductHeroImageSkelton } from '../../components/product/ProductHeroImageSkelton';
 import { useFeatures } from '../../hooks/useFeatures';
 import { useRecommendation } from '../../hooks/useRecommendation';
 
@@ -44,15 +43,13 @@ const LazyProductListWrapperComponent = ({featureIds}: {featureIds: number[]}) =
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) {
-            observer.disconnect();
-          };
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          observer.disconnect();
           if (!entry.target || !elemRef.current || !elemRef) return;
           setIds(featureIds);
-          observer.unobserve(elemRef.current);
-        });
+        }
       },
       {
         rootMargin: "20px",
@@ -66,7 +63,7 @@ const LazyProductListWrapperComponent = ({featureIds}: {featureIds: number[]}) =
       if (!elemRef.current) return;
       observer.unobserve(elemRef.current);
     };
-  }, [featureIds]);
+  }, []);
 
   return (
     <div ref={elemRef}>
@@ -85,9 +82,7 @@ export const Top: FC = () => {
       </Helmet>
       <Layout>
         <div>
-          <Suspense fallback={<ProductHeroImageSkelton />}>
-            <ProductHeroImageWrapperComponent />
-          </Suspense>
+          <ProductHeroImageWrapperComponent />
           <ProductListWrapperComponent featureIds={[1,2]} />
           <LazyProductListWrapperComponent featureIds={[3,4,5,6]} />
           <LazyProductListWrapperComponent featureIds={[7,8,9,10]} />

@@ -1,6 +1,7 @@
 import { css } from '@emotion/css';
 
 export const container = () => css`
+  min-height: 210px;
   opacity: 1;
   position: relative;
   transition-duration: 300ms;
