@@ -14,8 +14,17 @@ export const Image: FC<Props> = ({ fill, src, ...rest }) => {
         [styles.container__fill()]: fill === true,
       })}
       loading="lazy"
-      src={src ? src.slice(-3) + 'webp' : ''}
+      src={src ?   
+        convertImage(src) : ''
+      }
       {...rest}
     />
   );
 };
+
+function convertImage(str: string) {
+  if (str.slice(-3) === 'jpg') {
+    return str.replace('jpg', 'webp')
+  }
+  return str
+}
