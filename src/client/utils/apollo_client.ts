@@ -37,7 +37,7 @@ const syncXhr: HttpOptions['fetch'] = (uri, options) => {
 const link = new HttpLink({ fetch: syncXhr });
 
 export const apolloClient = new ApolloClient({
-  cache: typeof window === 'object' ? new InMemoryCache().restore(window.__APOLLO_STATE__) : new InMemoryCache(),
+  cache: new InMemoryCache(),
   connectToDevTools: true,
   defaultOptions: {
     mutate: {
@@ -52,6 +52,5 @@ export const apolloClient = new ApolloClient({
   },
   link,
   queryDeduplication: false,
-  ssrMode: true,
   uri: '/graphql',
 });
