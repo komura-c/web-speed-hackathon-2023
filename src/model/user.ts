@@ -1,11 +1,10 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, type Relation, Unique } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, type Relation } from 'typeorm';
 
 import { Order } from './order';
 import { Profile } from './profile';
 import { Review } from './review';
 
 @Entity()
-@Unique(['email'])
 export class User {
   @PrimaryGeneratedColumn()
   id!: number;
