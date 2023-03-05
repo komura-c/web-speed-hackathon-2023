@@ -9,17 +9,11 @@ export const useSlider = ({ items }: { items: unknown[] }) => {
   const slideIndex = Math.min(Math.max(0, _slideIndex), items.length - 1);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setVisibleItemCount(() => {
-        const containerWidth = containerElementRef.current?.getBoundingClientRect().width ?? 0;
-        return Math.max(Math.floor(containerWidth / ITEM_MIN_WIDTH), 1);
-      });
-    }, 500);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+    setVisibleItemCount(() => {
+      const containerWidth = containerElementRef.current?.getBoundingClientRect().width ?? 0;
+      return Math.max(Math.floor(containerWidth / ITEM_MIN_WIDTH), 1);
+    });
+  }, [items]);
 
   return {
     containerElementRef,
