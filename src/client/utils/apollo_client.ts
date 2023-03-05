@@ -1,6 +1,11 @@
 import type { HttpOptions } from '@apollo/client';
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 
+declare global {
+  // eslint-disable-next-line no-var
+  var __APOLLO_STATE__: never;
+}
+
 const syncXhr: HttpOptions['fetch'] = (uri, options) => {
   return new Promise((resolve, reject) => {
     const method = options?.method;
@@ -32,19 +37,19 @@ const syncXhr: HttpOptions['fetch'] = (uri, options) => {
 const link = new HttpLink({ fetch: syncXhr });
 
 export const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: typeof window === 'object' ? new InMemoryCache().restore(window.__APOLLO_STATE__) : new InMemoryCache(),
   connectToDevTools: true,
-  // defaultOptions: {
-  //   mutate: {
-  //     fetchPolicy: 'network-only',
-  //   },
-  //   query: {
-  //     fetchPolicy: 'cache-first',
-  //   },
-  //   watchQuery: {
-  //     fetchPolicy: 'cache-first',
-  //   },
-  // },
+  defaultOptions: {
+    mutate: {
+      fetchPolicy: 'network-only',
+    },
+    query: {
+      fetchPolicy: 'network-only',
+    },
+    watchQuery: {
+      fetchPolicy: 'network-only',
+    },
+  },
   link,
   queryDeduplication: false,
   ssrMode: true,

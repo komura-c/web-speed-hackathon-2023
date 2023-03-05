@@ -19,6 +19,9 @@ export const GetDeviceType: FC<Props> = ({children}: Props) => {
       const newWidth = window.innerWidth;
       setWindowWidth(newWidth);
     };
+    if (!(typeof window === 'object')) {
+      return;
+    }
     window.addEventListener("resize", updateWindow);
 
     return () => window.removeEventListener("resize", updateWindow) 

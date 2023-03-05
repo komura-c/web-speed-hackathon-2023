@@ -26,7 +26,9 @@ const FONT_FACE_SOURCES: FontFaceSource[] = [
 ];
 
 export async function loadFonts() {
-  for (const { descripter, family, source } of FONT_FACE_SOURCES) {
-    document.fonts.add(new FontFace(family, source, descripter));
+  if (typeof window === 'object') {
+    for (const { descripter, family, source } of FONT_FACE_SOURCES) {
+      document.fonts.add(new FontFace(family, source, descripter));
+    }
   }
 }
