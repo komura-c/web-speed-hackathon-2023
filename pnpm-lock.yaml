@@ -29,7 +29,6 @@ specifiers:
   classnames: 2.3.2
   cross-env: 7.0.3
   csstype: 3.1.1
-  currency-formatter: 1.5.9
   eslint: 8.29.0
   eslint-config-prettier: 8.5.0
   eslint-import-resolver-typescript: 3.5.3
@@ -83,7 +82,6 @@ specifiers:
   vite-plugin-top-level-await: 1.2.4
   vite-plugin-wasm: 3.2.1
   zipcode-ja: 0.0.7
-  zod: 3.20.6
 
 dependencies:
   '@apollo/client': 3.8.0-alpha.7_gdcq4dv6opitr3wbfwyjmanyra
@@ -94,7 +92,6 @@ dependencies:
   '@koa/router': 12.0.0
   bcrypt: 5.1.0
   classnames: 2.3.2
-  currency-formatter: 1.5.9
   formik: 2.2.9_react@18.2.0
   graphql: 16.6.0
   http-graceful-shutdown: 3.1.13
@@ -121,7 +118,6 @@ dependencies:
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
   typeorm: 0.3.11_h3l5zcb3i6sggvllyfknv6gs44
   zipcode-ja: 0.0.7
-  zod: 3.20.6
 
 devDependencies:
   '@babel/core': 7.20.5
@@ -1965,10 +1961,6 @@ packages:
       negotiator: 0.6.3
     dev: false
 
-  /accounting/0.4.1:
-    resolution: {integrity: sha512-RU6KY9Y5wllyaCNBo1W11ZOTnTHMMgOZkIwdOOs6W5ibMTp72i4xIbEA48djxVGqMNTUNbvrP/1nWg5Af5m2gQ==}
-    dev: false
-
   /acorn-jsx/5.3.2_acorn@8.8.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -2649,14 +2641,6 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
-
-  /currency-formatter/1.5.9:
-    resolution: {integrity: sha512-47reIlQZzLn+WWI8xPDCaunwLd/abGnPwAXpM8hEvjeuRB8CVa4KjkZJ4Eo0MO1OKXqeiel71O04ITz+6NMzdA==}
-    dependencies:
-      accounting: 0.4.1
-      locale-currency: 0.0.2
-      object-assign: 4.1.1
-    dev: false
 
   /date-fns/2.29.3:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
@@ -4560,10 +4544,6 @@ packages:
       pify: 3.0.0
       strip-bom: 3.0.0
     dev: true
-
-  /locale-currency/0.0.2:
-    resolution: {integrity: sha512-5uUCVWBhixSV9x48yONxyGaW7YNGwFqM3f0ue1V+GbcHXGfOLKP+2HrwSFxkQ59V7cgcxahkRLD2Lw/CRfBJAQ==}
-    dev: false
 
   /locate-path/5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
@@ -7060,8 +7040,4 @@ packages:
 
   /zipcode-ja/0.0.7:
     resolution: {integrity: sha512-DJw7EUtu8aCwBrtlDwD/y2owHlkgNDmuC981eDz9EadDd/7/YofvFveImE+nFij0ftVQnZasyrAmW/HC6oIMcA==}
-    dev: false
-
-  /zod/3.20.6:
-    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
     dev: false

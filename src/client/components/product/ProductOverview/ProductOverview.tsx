@@ -1,5 +1,4 @@
 import { Temporal } from '@js-temporal/polyfill';
-import { format } from 'currency-formatter';
 import type { FC } from 'react';
 import { memo } from 'react';
 
@@ -50,11 +49,15 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       <div className={styles.priceWrapper()}>
         {activeOffer !== undefined ? (
           <span className={styles.priceWithoutOffer()}>
-            {format(product.price, { code: 'JPY', precision: 0 })}
+            {
+              new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(product.price)
+            }
           </span>
         ) : null}
         <span className={styles.price()}>
-          {format(activeOffer?.price ?? product.price, { code: 'JPY', precision: 0 })}
+          {
+            new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(activeOffer?.price ?? product.price)
+          }
         </span>
       </div>
     </div>

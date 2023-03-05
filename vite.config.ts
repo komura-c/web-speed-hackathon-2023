@@ -17,7 +17,6 @@ export default defineConfig(async ({ mode }) => {
             "@emotion/css": ["@emotion/css"],
             "@js-temporal/polyfill": ["@js-temporal/polyfill"],
             "classnames": ["classnames"],
-            "currency-formatter": ["currency-formatter"],
             "formik": ["formik"],
             react: ['react'],
             "react-dom": ["react-dom"],
@@ -26,7 +25,6 @@ export default defineConfig(async ({ mode }) => {
             "react-icons": ["react-icons"],
             "react-router-dom": ["react-router-dom"],
             "recoil": ["recoil"],
-            "zod": ["zod"],
           } : {}
         },
         plugins: [

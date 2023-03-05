@@ -2,7 +2,6 @@ import type { FormikErrors } from 'formik';
 import { useFormik } from 'formik';
 import type { FC } from 'react';
 import { useState } from 'react';
-import * as z from 'zod';
 
 import { useSignUp } from '../../../hooks/useSignUp';
 import { useCloseModal, useIsOpenModal, useOpenModal } from '../../../store/modal';
@@ -16,9 +15,7 @@ const NOT_INCLUDED_AT_CHAR_REGEX = /^(?:[^@]*){6,}$/;
 const NOT_INCLUDED_SYMBOL_CHARS_REGEX = /^(?:(?:[a-zA-Z0-9]*){2,})+$/;
 
 // NOTE: 文字列に @ が含まれているか確認する
-const emailSchema = z.string().refine((v) => !NOT_INCLUDED_AT_CHAR_REGEX.test(v));
 // NOTE: 文字列に英数字以外の文字が含まれているか確認する
-const passwordSchema = z.string().refine((v) => !NOT_INCLUDED_SYMBOL_CHARS_REGEX.test(v));
 
 export type SignUpForm = {
   email: string;
@@ -58,10 +55,10 @@ export const SignUpModal: FC = () => {
     },
     validate(values) {
       const errors: FormikErrors<SignUpForm> = {};
-      if (values.email != '' && !emailSchema.safeParse(values.email).success) {
+      if (values.email != '' && !NOT_INCLUDED_AT_CHAR_REGEX.test(values.email)) {
         errors['email'] = 'メールアドレスの形式が間違っています';
       }
-      if (values.password != '' && !passwordSchema.safeParse(values.password).success) {
+      if (values.password != '' && !NOT_INCLUDED_SYMBOL_CHARS_REGEX.test(values.password)) {
         errors['password'] = '英数字以外の文字を含めてください';
       }
       return errors;
