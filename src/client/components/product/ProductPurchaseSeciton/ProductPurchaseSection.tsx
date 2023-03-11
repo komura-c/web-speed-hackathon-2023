@@ -4,8 +4,8 @@ import { memo } from 'react';
 import type { ProductFragmentResponse } from '../../../graphql/fragments';
 import { Icon } from '../../foundation/Icon';
 import { OutlineButton } from '../../foundation/OutlineButton';
-import { PrimaryAnchor } from '../../foundation/PrimaryAnchor';
 import { PrimaryButton } from '../../foundation/PrimaryButton';
+import { PrimaryLink } from '../../foundation/PrimaryLink';
 
 import * as styles from './ProductPurchaseSection.styles';
 
@@ -55,9 +55,9 @@ export const ProductPurchaseSection: FC<Props> = memo(
           <span>{amountInCart}個 カートに追加済み</span>
         </p>
         <div className={styles.actionButtonList()}>
-          <PrimaryAnchor href="/order" size="base">
+          <PrimaryLink href="/order" size="base">
             購入手続きへ
-          </PrimaryAnchor>
+          </PrimaryLink>
           <OutlineButton onClick={() => onUpdateCartItem(product.id, amountInCart + 1)} size="lg">
             カートに追加
           </OutlineButton>

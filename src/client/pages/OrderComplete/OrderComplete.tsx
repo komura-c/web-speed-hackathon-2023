@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/application/Layout';
 import { AspectRatio } from '../../components/foundation/AspectRatio';
 import { DeviceType, GetDeviceType } from '../../components/foundation/GetDeviceType/GetDeviceType';
-import { PrimaryAnchor } from '../../components/foundation/PrimaryAnchor';
+import { PrimaryLink } from '../../components/foundation/PrimaryLink';
 import { WidthRestriction } from '../../components/foundation/WidthRestriction';
 import { ProductHeroImage } from '../../components/product/ProductHeroImage';
 import { useAuthUser } from '../../hooks/useAuthUser';
@@ -19,7 +19,7 @@ export const OrderComplete: FC = () => {
   const navigate = useNavigate();
   const { authUserLoading, isAuthUser } = useAuthUser();
   const { recommendation } = useRecommendation();
-  loadFonts()
+  loadFonts();
 
   if (!recommendation || authUserLoading) {
     return null;
@@ -61,9 +61,9 @@ export const OrderComplete: FC = () => {
                 </div>
 
                 <div className={styles.backToTopButtonWrapper()}>
-                  <PrimaryAnchor href="/" size="lg">
+                  <PrimaryLink href="/" size="lg">
                     トップへ戻る
-                  </PrimaryAnchor>
+                  </PrimaryLink>
                 </div>
               </div>
             </WidthRestriction>

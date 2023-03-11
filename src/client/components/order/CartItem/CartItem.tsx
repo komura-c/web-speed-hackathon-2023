@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import type { ChangeEventHandler, FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import type { ShoppingCartItemFragmentResponse } from '../../../graphql/fragments';
 import { useActiveOffer } from '../../../hooks/useActiveOffer';
 import { normalizeCartItemCount } from '../../../utils/normalize_cart_item';
-import { Anchor } from '../../foundation/Anchor';
 import { AspectRatio } from '../../foundation/AspectRatio';
 import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType/GetDeviceType';
 import { Image } from '../../foundation/Image';
@@ -40,7 +40,7 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
             })}
           >
             <div className={styles.item()}>
-              <Anchor href={`/product/${item.product.id}`}>
+              <Link to={`/product/${item.product.id}`}>
                 <div className={styles.itemInner()}>
                   {thumbnailFile ? (
                     <div
@@ -66,7 +66,7 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
                     </p>
                   </div>
                 </div>
-              </Anchor>
+              </Link>
             </div>
             <div
               className={classNames(styles.container(), {
