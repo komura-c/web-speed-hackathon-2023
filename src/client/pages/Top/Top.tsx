@@ -1,5 +1,5 @@
-import type { FC} from 'react';
-import { useEffect, useRef, useState } from 'react';
+import type { FC } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Layout } from '../../components/application/Layout';
@@ -16,9 +16,9 @@ const ProductHeroImageWrapperComponent = () => {
     return null;
   }
   return <ProductHeroImage product={recommendation.product} title="今週のオススメ" />;
-}
+};
 
-const ProductListWrapperComponent = ({featureIds}: {featureIds: number[]}) => {
+const ProductListWrapperComponent = ({ featureIds }: { featureIds: number[] }) => {
   const { features } = useFeatures(featureIds);
   if (features === undefined) {
     return null;
@@ -34,10 +34,10 @@ const ProductListWrapperComponent = ({featureIds}: {featureIds: number[]}) => {
         );
       })}
     </div>
-  )
-}
+  );
+};
 
-const LazyProductListWrapperComponent = ({featureIds}: {featureIds: number[]}) => {
+const LazyProductListWrapperComponent = ({ featureIds }: { featureIds: number[] }) => {
   const [ids, setIds] = useState<number[]>([]);
   const elemRef = useRef<HTMLDivElement>(null);
 
@@ -52,8 +52,8 @@ const LazyProductListWrapperComponent = ({featureIds}: {featureIds: number[]}) =
         }
       },
       {
-        rootMargin: "20px",
-      }
+        rootMargin: '20px',
+      },
     );
 
     if (!elemRef.current) return;
@@ -63,15 +63,9 @@ const LazyProductListWrapperComponent = ({featureIds}: {featureIds: number[]}) =
       if (!elemRef.current) return;
       observer.unobserve(elemRef.current);
     };
-  }, []);
+  }, [featureIds]);
 
-  return (
-    <div ref={elemRef}>
-      {ids &&
-        <ProductListWrapperComponent featureIds={ids} />
-      }
-    </div>
-  );
+  return <div ref={elemRef}>{ids.length ? <ProductListWrapperComponent featureIds={ids} /> : <></>}</div>;
 };
 
 export const Top: FC = () => {
@@ -81,12 +75,18 @@ export const Top: FC = () => {
         <title>買えるオーガニック</title>
       </Helmet>
       <Layout>
-        <div>
+        <Suspense fallback="">
           <ProductHeroImageWrapperComponent />
-          <ProductListWrapperComponent featureIds={[1,2]} />
-          <LazyProductListWrapperComponent featureIds={[3,4,5,6]} />
-          <LazyProductListWrapperComponent featureIds={[7,8,9,10]} />
-        </div>
+        </Suspense>
+        <Suspense fallback="">
+          <ProductListWrapperComponent featureIds={[1, 2, 3]} />
+        </Suspense>
+        <Suspense fallback="">
+          <LazyProductListWrapperComponent featureIds={[4, 5, 6]} />
+        </Suspense>
+        <Suspense fallback="">
+          <LazyProductListWrapperComponent featureIds={[7, 8, 9, 10]} />
+        </Suspense>
       </Layout>
     </>
   );
