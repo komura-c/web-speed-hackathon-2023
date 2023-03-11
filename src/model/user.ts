@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, type Relation } from 'typeorm';
+import { Column, Entity, Index, OneToMany, OneToOne, PrimaryGeneratedColumn, type Relation } from 'typeorm';
 
 import { Order } from './order';
 import { Profile } from './profile';
@@ -7,6 +7,7 @@ import { Review } from './review';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
+  @Index({ unique: true })
   id!: number;
 
   @Column()
