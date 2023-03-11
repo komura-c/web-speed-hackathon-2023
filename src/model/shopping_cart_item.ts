@@ -1,11 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, type Relation } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn, Unique, type Relation } from 'typeorm';
 
 import { Order } from './order';
 import { Product } from './product';
 
 @Entity()
+@Unique(['product', 'order'])
 export class ShoppingCartItem {
   @PrimaryGeneratedColumn()
+  @Index({ unique: true })
   id!: number;
 
   @ManyToOne(() => Product)

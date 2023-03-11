@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, type Relation } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn, type Relation } from 'typeorm';
 
 import { ShoppingCartItem } from './shopping_cart_item';
 import { User } from './user';
@@ -6,6 +6,7 @@ import { User } from './user';
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()
+  @Index({ unique: true })
   id!: number;
 
   @OneToMany(() => ShoppingCartItem, (item) => item.order)

@@ -33,8 +33,8 @@ export const dataSource = new DataSource({
     FeatureItem,
   ],
   // NOTE: SQLを確認するときは、loggingにqueryを入れる
-  logging: ['warn', 'error'],
   // logger: 'file',
+  logging: ['warn', 'error'],
   migrations: [],
   subscribers: [],
   synchronize: true,

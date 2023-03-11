@@ -23,6 +23,9 @@ export const userResolver: GraphQLModelResolver<User> = {
   },
   reviews: (parent) => {
     return dataSource.manager.find(Review, {
+      relations: {
+        user: true,
+      },
       where: {
         user: parent,
       },
