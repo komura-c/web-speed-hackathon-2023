@@ -4,12 +4,12 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
 import { Layout } from '../../components/application/Layout';
+import { useAuthUserContext } from '../../components/application/Providers/AuthProvider';
 import { AspectRatio } from '../../components/foundation/AspectRatio';
 import { DeviceType, GetDeviceType } from '../../components/foundation/GetDeviceType/GetDeviceType';
 import { PrimaryLink } from '../../components/foundation/PrimaryLink';
 import { WidthRestriction } from '../../components/foundation/WidthRestriction';
 import { ProductHeroImage } from '../../components/product/ProductHeroImage';
-import { useAuthUser } from '../../hooks/useAuthUser';
 import { useRecommendation } from '../../hooks/useRecommendation';
 import { loadFonts } from '../../utils/load_fonts';
 
@@ -17,7 +17,7 @@ import * as styles from './OrderComplete.styles';
 
 export const OrderComplete: FC = () => {
   const navigate = useNavigate();
-  const { authUserLoading, isAuthUser } = useAuthUser();
+  const { authUserLoading, isAuthUser } = useAuthUserContext();
   const { recommendation } = useRecommendation();
   loadFonts();
 

@@ -4,9 +4,9 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
 import { Layout } from '../../components/application/Layout';
+import { useAuthUserContext } from '../../components/application/Providers/AuthProvider';
 import { WidthRestriction } from '../../components/foundation/WidthRestriction';
 import { OrderPreview } from '../../components/order/OrderPreview';
-import { useAuthUser } from '../../hooks/useAuthUser';
 import { useOrder } from '../../hooks/useOrder';
 import { useSubmitOrder } from '../../hooks/useSubmitOrder';
 import { useUpdateCartItem } from '../../hooks/useUpdateCartItems';
@@ -18,7 +18,7 @@ const OrderForm = lazy(() => import('../../components/order/OrderForm'));
 export const Order: FC = () => {
   const navigate = useNavigate();
 
-  const { authUser, authUserLoading, isAuthUser } = useAuthUser();
+  const { authUser, authUserLoading, isAuthUser } = useAuthUserContext();
   const { updateCartItem } = useUpdateCartItem();
   const { submitOrder } = useSubmitOrder();
   const { order } = useOrder();

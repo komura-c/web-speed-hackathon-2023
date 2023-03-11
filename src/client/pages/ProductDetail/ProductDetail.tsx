@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 
 import { Layout } from '../../components/application/Layout';
+import { useAuthUserContext } from '../../components/application/Providers/AuthProvider';
 import { WidthRestriction } from '../../components/foundation/WidthRestriction';
 import { ProductMediaListPreviewer } from '../../components/product/ProductMediaListPreviewer';
 import { ProductOverview } from '../../components/product/ProductOverview';
@@ -10,7 +11,6 @@ import { ProductPurchaseSection } from '../../components/product/ProductPurchase
 import { ReviewSection } from '../../components/review/ReviewSection';
 import { useActiveOffer } from '../../hooks/useActiveOffer';
 import { useAmountInCart } from '../../hooks/useAmountInCart';
-import { useAuthUser } from '../../hooks/useAuthUser';
 import { useProduct } from '../../hooks/useProduct';
 import { useReviews } from '../../hooks/useReviews';
 import { useSendReview } from '../../hooks/useSendReview';
@@ -25,7 +25,7 @@ export const ProductDetail: FC = () => {
 
   const { product } = useProduct(Number(productId));
   const { reviews } = useReviews(product?.id);
-  const { isAuthUser } = useAuthUser();
+  const { isAuthUser } = useAuthUserContext();
   const { sendReview } = useSendReview();
   const { updateCartItem } = useUpdateCartItem();
   const handleOpenModal = useOpenModal();

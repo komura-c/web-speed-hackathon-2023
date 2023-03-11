@@ -1,15 +1,15 @@
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuthUser } from '../../../hooks/useAuthUser';
 import { useOpenModal } from '../../../store/modal';
+import { useAuthUserContext } from '../../application/Providers/AuthProvider';
 import { Icon } from '../../foundation/Icon';
 import { Image } from '../../foundation/Image';
 
 import * as styles from './Header.styles';
 
 export const Header: FC = () => {
-  const { isAuthUser } = useAuthUser();
+  const { isAuthUser } = useAuthUserContext();
   const handleOpenModal = useOpenModal();
 
   return (

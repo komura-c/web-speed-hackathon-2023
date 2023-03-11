@@ -1,7 +1,7 @@
-import { useAuthUser } from './useAuthUser';
+import { useAuthUserContext } from '../components/application/Providers/AuthProvider';
 
 export const useAmountInCart = (productId: number) => {
-  const { authUser } = useAuthUser();
+  const { authUser } = useAuthUserContext();
 
   const order = authUser?.orders.find((order) => order.isOrdered === false);
   const shoppingCartItems = order?.items ?? [];
