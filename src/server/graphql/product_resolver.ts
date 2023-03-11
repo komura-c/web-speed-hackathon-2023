@@ -9,6 +9,9 @@ import type { GraphQLModelResolver } from './model_resolver';
 export const productResolver: GraphQLModelResolver<Product> = {
   media: (parent) => {
     return dataSource.manager.find(ProductMedia, {
+      relations: {
+        file: true,
+      },
       where: {
         product: parent,
       },
@@ -23,6 +26,9 @@ export const productResolver: GraphQLModelResolver<Product> = {
   },
   reviews: (parent) => {
     return dataSource.manager.find(Review, {
+      relations: {
+        user: true,
+      },
       where: {
         product: parent,
       },

@@ -32,7 +32,9 @@ export const dataSource = new DataSource({
     FeatureSection,
     FeatureItem,
   ],
-  logging: false,
+  // NOTE: SQLを確認するときは、loggingにqueryを入れる
+  logging: ['warn', 'error'],
+  // logger: 'file',
   migrations: [],
   subscribers: [],
   synchronize: true,
