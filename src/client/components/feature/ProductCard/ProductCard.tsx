@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 import type { ProductFragmentResponse } from '../../../graphql/fragments';
 import { useActiveOffer } from '../../../hooks/useActiveOffer';
+import { AnchorLink } from '../../foundation/AnchorLink';
 import { AspectRatio } from '../../foundation/AspectRatio';
 import { Image } from '../../foundation/Image';
 import { ProductOfferLabel } from '../../product/ProductOfferLabel';
@@ -20,7 +20,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
   const price = activeOffer?.price ?? product.price;
 
   return (
-    <Link to={`/product/${product.id}`}>
+    <AnchorLink href={`/product/${product.id}`}>
       <div className={styles.inner()}>
         {thumbnailFile ? (
           <div className={styles.image()}>
@@ -41,6 +41,6 @@ export const ProductCard: FC<Props> = ({ product }) => {
           </div>
         )}
       </div>
-    </Link>
+    </AnchorLink>
   );
 };

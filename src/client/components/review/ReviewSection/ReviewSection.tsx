@@ -34,7 +34,7 @@ export const ReviewSection: FC<Props> = memo(({ hasSignedIn, onSubmitReview, rev
     },
     validate(values) {
       const errors: FormikErrors<ReviewForm> = {};
-      if (values.comment != '' && LESS_THAN_64_LENGTH_REGEX.test(values.comment)) {
+      if (values.comment != '' && !LESS_THAN_64_LENGTH_REGEX.test(values.comment)) {
         errors['comment'] = '64 文字以内でコメントしてください';
       }
       return errors;

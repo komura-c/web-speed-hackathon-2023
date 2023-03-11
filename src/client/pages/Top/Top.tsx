@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet';
 
 import { Layout } from '../../components/application/Layout';
 import { ProductList } from '../../components/feature/ProductList';
@@ -68,24 +67,23 @@ const LazyProductListWrapperComponent = ({ featureIds }: { featureIds: number[] 
   return <div ref={elemRef}>{ids.length ? <ProductListWrapperComponent featureIds={ids} /> : <></>}</div>;
 };
 
+const FallbackComponent = () => {
+  return <div className={styles.skelton()}></div>;
+};
+
 export const Top: FC = () => {
+  document.title = '買えるオーガニック';
   return (
     <>
-      <Helmet>
-        <title>買えるオーガニック</title>
-      </Helmet>
       <Layout>
-        <Suspense fallback="">
+        <Suspense fallback={FallbackComponent()}>
           <ProductHeroImageWrapperComponent />
         </Suspense>
-        <Suspense fallback="">
+        <Suspense fallback={FallbackComponent()}>
           <ProductListWrapperComponent featureIds={[1, 2, 3]} />
         </Suspense>
-        <Suspense fallback="">
-          <LazyProductListWrapperComponent featureIds={[4, 5, 6]} />
-        </Suspense>
-        <Suspense fallback="">
-          <LazyProductListWrapperComponent featureIds={[7, 8, 9, 10]} />
+        <Suspense fallback={FallbackComponent()}>
+          <LazyProductListWrapperComponent featureIds={[4, 5, 6, 7, 8, 9, 10]} />
         </Suspense>
       </Layout>
     </>

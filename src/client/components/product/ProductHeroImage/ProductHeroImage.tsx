@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { memo } from 'react';
 import type { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 import type { ProductFragmentResponse } from '../../../graphql/fragments';
+import { AnchorLink } from '../../foundation/AnchorLink';
 import { AspectRatio } from '../../foundation/AspectRatio';
 import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType/GetDeviceType';
 import { WidthRestriction } from '../../foundation/WidthRestriction';
@@ -27,7 +27,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
       {({ deviceType }) => {
         return (
           <WidthRestriction>
-            <Link to={`/product/${product.id}`}>
+            <AnchorLink href={`/product/${product.id}`}>
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
                   <img className={styles.image()} loading="eager" src={thumbnailFile.filename} />
@@ -52,7 +52,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
                   </p>
                 </div>
               </div>
-            </Link>
+            </AnchorLink>
           </WidthRestriction>
         );
       }}

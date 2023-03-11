@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
-import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
 import { Layout } from '../../components/application/Layout';
@@ -29,11 +28,9 @@ export const OrderComplete: FC = () => {
     return null;
   }
 
+  document.title = '購入が完了しました';
   return (
     <>
-      <Helmet>
-        <title>購入が完了しました</title>
-      </Helmet>
       <Layout>
         <GetDeviceType>
           {({ deviceType }) => (

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
-import { Link } from 'react-router-dom';
+
+import { AnchorLink } from '../AnchorLink';
 
 import * as styles from './PrimaryLink.styles';
 
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export const PrimaryLink: FC<Props> = ({ children, href, size }) => (
-  <Link to={href}>
+  <AnchorLink href={href}>
     <span
       className={classNames(styles.inner(), {
         [styles.container__lg()]: size === 'lg',
@@ -21,5 +22,5 @@ export const PrimaryLink: FC<Props> = ({ children, href, size }) => (
     >
       {children}
     </span>
-  </Link>
+  </AnchorLink>
 );

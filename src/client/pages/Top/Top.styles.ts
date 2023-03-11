@@ -1,5 +1,9 @@
 import { css } from '@emotion/css';
 
+export const skelton = () => css`
+  min-height: 100vh;
+`;
+
 export const featureList = () => css`
   min-height: 280px;
   display: flex;
