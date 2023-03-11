@@ -1,4 +1,3 @@
-import { Temporal } from '@js-temporal/polyfill';
 import type { FC } from 'react';
 import { memo } from 'react';
 
@@ -22,7 +21,7 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       return;
     }
 
-    const endTime = Temporal.Instant.from(activeOffer.endDate).toLocaleString('ja-jp', {
+    const formatter = new Intl.DateTimeFormat('ja-JP', {
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
@@ -30,6 +29,7 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       second: '2-digit',
       year: 'numeric',
     });
+    const endTime = formatter.format(new Date(activeOffer.endDate));
 
     return (
       <div className={styles.offerLabel()}>

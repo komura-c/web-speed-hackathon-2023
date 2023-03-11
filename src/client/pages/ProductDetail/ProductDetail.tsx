@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Layout } from '../../components/application/Layout';
@@ -7,11 +8,9 @@ import { WidthRestriction } from '../../components/foundation/WidthRestriction';
 import { ProductMediaListPreviewer } from '../../components/product/ProductMediaListPreviewer';
 import { ProductOverview } from '../../components/product/ProductOverview';
 import { ProductPurchaseSection } from '../../components/product/ProductPurchaseSeciton';
-import { ReviewSection } from '../../components/review/ReviewSection';
 import { useActiveOffer } from '../../hooks/useActiveOffer';
 import { useAmountInCart } from '../../hooks/useAmountInCart';
 import { useProduct } from '../../hooks/useProduct';
-import { useReviews } from '../../hooks/useReviews';
 import { useSendReview } from '../../hooks/useSendReview';
 import { useUpdateCartItem } from '../../hooks/useUpdateCartItems';
 import { useOpenModal } from '../../store/modal';
@@ -19,11 +18,12 @@ import { normalizeCartItemCount } from '../../utils/normalize_cart_item';
 
 import * as styles from './ProductDetail.styles';
 
+const ReviewSection = lazy(() => import('../../components/review/ReviewSection'));
+
 export const ProductDetail: FC = () => {
   const { productId } = useParams();
 
   const { product } = useProduct(Number(productId));
-  const { reviews } = useReviews(product?.id);
   const { isAuthUser } = useAuthUserContext();
   const { sendReview } = useSendReview();
   const { updateCartItem } = useUpdateCartItem();
@@ -70,7 +70,13 @@ export const ProductDetail: FC = () => {
 
             <section className={styles.reviews()}>
               <h2 className={styles.reviewsHeading()}>レビュー</h2>
-              <ReviewSection hasSignedIn={isAuthUser} onSubmitReview={handleSubmitReview} reviews={reviews} />
+              <Suspense fallback="">
+                <ReviewSection
+                  hasSignedIn={isAuthUser}
+                  onSubmitReview={handleSubmitReview}
+                  productId={productId ? productId : ''}
+                />
+              </Suspense>
             </section>
           </div>
         </WidthRestriction>

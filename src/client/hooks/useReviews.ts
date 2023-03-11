@@ -16,15 +16,7 @@ export const useReviews = (productId: number | undefined) => {
   });
 
   useEffect(() => {
-    // サーバー負荷が懸念されそうなので、リクエストを少し待つ
-    // サーバー負荷がなくなれば、すぐ読み込んでもよい
-    const timer = setTimeout(() => {
-      loadReviews();
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    loadReviews();
   }, [loadReviews, productId]);
 
   const reviews = reviewsResult.data?.product.reviews;

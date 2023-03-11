@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import type { FC } from 'react';
 import { memo } from 'react';
 
-import type { ReviewFragmentResponse } from '../../../graphql/fragments';
+import { useReviews } from '../../../hooks/useReviews';
 import { PrimaryButton } from '../../foundation/PrimaryButton';
 import { TextArea } from '../../foundation/TextArea';
 import { ReviewList } from '../ReviewList';
@@ -14,7 +14,7 @@ const LESS_THAN_64_LENGTH_REGEX = /^([\s\S\n]{0,8}){0,8}$/u;
 // NOTE: 改行含めて 64 文字以内であるかどうか確認する
 
 type Props = {
-  reviews: ReviewFragmentResponse[] | undefined;
+  productId: string;
   hasSignedIn: boolean;
   onSubmitReview: (reviewForm: ReviewForm) => void;
 };
@@ -23,7 +23,8 @@ type ReviewForm = {
   comment: string;
 };
 
-export const ReviewSection: FC<Props> = memo(({ hasSignedIn, onSubmitReview, reviews }) => {
+export const ReviewSection: FC<Props> = memo(({ hasSignedIn, onSubmitReview, productId }) => {
+  const { reviews } = useReviews(Number(productId));
   const formik = useFormik<ReviewForm>({
     initialValues: {
       comment: '',

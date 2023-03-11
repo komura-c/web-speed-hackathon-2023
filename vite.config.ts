@@ -16,9 +16,7 @@ export default defineConfig(async ({ mode }) => {
             ? {
                 '@apollo/client': ['@apollo/client'],
                 '@emotion/css': ['@emotion/css'],
-                '@js-temporal/polyfill': ['@js-temporal/polyfill'],
                 classnames: ['classnames'],
-                formik: ['formik'],
                 react: ['react'],
                 'react-dom': ['react-dom'],
                 'react-error-boundary': ['react-error-boundary'],

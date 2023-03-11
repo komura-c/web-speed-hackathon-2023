@@ -1,1 +1,1 @@
-export * from './ReviewSection';
+export { ReviewSection as default } from './ReviewSection';

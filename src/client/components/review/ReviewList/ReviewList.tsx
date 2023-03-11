@@ -1,4 +1,3 @@
-import { Temporal } from '@js-temporal/polyfill';
 import type { FC } from 'react';
 
 import type { ReviewFragmentResponse } from '../../../graphql/fragments';
@@ -19,7 +18,7 @@ export const ReviewList: FC<Props> = ({ reviews }) => {
   return (
     <ul className={styles.itemList()}>
       {reviews.map((review) => {
-        const endTime = Temporal.Instant.from(review.postedAt).toLocaleString('ja-jp', {
+        const formatter = new Intl.DateTimeFormat('ja-JP', {
           day: '2-digit',
           hour: '2-digit',
           minute: '2-digit',
@@ -27,6 +26,7 @@ export const ReviewList: FC<Props> = ({ reviews }) => {
           second: '2-digit',
           year: 'numeric',
         });
+        const endTime = formatter.format(new Date(review.postedAt));
 
         return (
           <li key={review.id} className={styles.item()} data-testid="review-list-item">
