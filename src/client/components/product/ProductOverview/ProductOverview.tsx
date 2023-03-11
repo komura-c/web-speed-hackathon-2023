@@ -49,19 +49,17 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       <div className={styles.priceWrapper()}>
         {activeOffer !== undefined ? (
           <span className={styles.priceWithoutOffer()}>
-            {
-              new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(product.price)
-            }
+            {new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(product.price)}
           </span>
         ) : null}
         <span className={styles.price()}>
-          {
-            new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(activeOffer?.price ?? product.price)
-          }
+          {new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(
+            activeOffer?.price ?? product.price,
+          )}
         </span>
       </div>
     </div>
   );
-}, (prevProps, nextProps) => prevProps.activeOffer?.id === nextProps.activeOffer?.id && prevProps.product?.id === nextProps.product?.id);
+});
 
 ProductOverview.displayName = 'ProductOverview';

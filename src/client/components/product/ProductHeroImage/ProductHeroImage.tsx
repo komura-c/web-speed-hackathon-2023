@@ -30,7 +30,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
             <Anchor href={`/product/${product.id}`}>
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
-                  <img className={styles.image()} loading="eager" src={convertImage(thumbnailFile.filename)} />
+                  <img className={styles.image()} loading="eager" src={thumbnailFile.filename} />
                 </AspectRatio>
 
                 <div className={styles.overlay()}>
@@ -58,13 +58,6 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
       }}
     </GetDeviceType>
   );
-}, (prevProps, nextProps) => prevProps.product.id === nextProps.product.id && prevProps.title === nextProps.title);
+});
 
 ProductHeroImage.displayName = 'ProductHeroImage';
-
-function convertImage(str: string) {
-  if (str.slice(-3) === 'jpg') {
-    return str.replace('jpg', 'webp')
-  }
-  return str
-}

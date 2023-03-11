@@ -65,7 +65,6 @@ export const ProductPurchaseSection: FC<Props> = memo(
       </div>
     );
   },
- (prevProps, nextProps) => prevProps.isAuthUser === nextProps.isAuthUser && prevProps.amountInCart === nextProps.amountInCart && prevProps.product?.id === nextProps.product?.id
 );
 
 ProductPurchaseSection.displayName = 'ProductPurchaseSection';

@@ -27,11 +27,11 @@ export const OrderPreview: FC<Props> = memo(({ onRemoveCartItem, onUpdateCartIte
           );
         })}
       </ul>
-      <p className={styles.totalPrice()}>{
-        new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(totalPrice)
-      }</p>
+      <p className={styles.totalPrice()}>
+        {new Intl.NumberFormat('ja-JP', { currency: 'JPY', style: 'currency' }).format(totalPrice)}
+      </p>
     </div>
   );
-},  (prevProps, nextProps) => prevProps.order.id === nextProps.order.id);
+});
 
 OrderPreview.displayName = 'OrderPreview';

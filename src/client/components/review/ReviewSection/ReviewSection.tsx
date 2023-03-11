@@ -68,6 +68,6 @@ export const ReviewSection: FC<Props> = memo(({ hasSignedIn, onSubmitReview, rev
       )}
     </div>
   );
-}, (prevProps, nextProps) => prevProps.hasSignedIn === nextProps.hasSignedIn && prevProps.reviews?.toString() === nextProps.reviews?.toString());
+});
 
 ReviewSection.displayName = 'ReviewSection';
